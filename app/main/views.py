@@ -4,13 +4,11 @@ from flask import render_template,request,redirect,url_for
 
 from . import main
 
-
-
 @main.route('/')
 def index():
     '''
     my index page
-    :return:
+    return
     '''
-    message= "huhu"
+    message= "Hello"
     return render_template('index.html', message=message)
