@@ -2,6 +2,9 @@ import os
 
 
 class Config:
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://emdee:arif@123@localhost/pitches'
+
     @staticmethod
     def init_app(app):
         pass
