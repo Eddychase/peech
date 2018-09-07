@@ -4,6 +4,7 @@ from flask_login import login_required,current_user
 from ..models import Pitches, User
 from . import main
 from .. import db
+from .forms import PitchForm
 
 @main.route('/')
 def index():
@@ -17,7 +18,9 @@ def index():
 @main.route('/pitch', methods = ['GET','POST'])
 @login_required
 def new_pitch():
+
     form = PitchForm()
+
     if form.validate_on_submit():
         category = form.category.data
         pitch= form.pitch.data
@@ -31,4 +34,4 @@ def new_pitch():
         # save review method
         new_pitch.save_pitch()
 
-        return render_template('pitch.html', title=title, pitch_entry= form)
+    return render_template('pitch.html', title=title, pitch_entry= form)
