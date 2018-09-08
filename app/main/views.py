@@ -90,7 +90,7 @@ def update_profile(uname):
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for('.profile',uname=user.author))
+        return redirect(url_for('main.update_profile',uname=user.author))
 
     return render_template('profile/update.html',form =form)
 
@@ -103,4 +103,4 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
+    return redirect(url_for('main.update_profile',uname=uname))
