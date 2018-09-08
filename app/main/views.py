@@ -27,11 +27,10 @@ def new_pitch():
 
 
         # Updated pitchinstance
-        new_pitch = Pitches(category= category,pitch= pitch)
+        new_pitch = Pitches(category= category,pitch= pitch,user_id=current_user.id)
 
         title='New Pitch'
 
-        # save review method
         new_pitch.save_pitch()
 
     return render_template('pitch.html',pitch_entry= form)
@@ -45,3 +44,15 @@ def category(cate):
     # print(category)
     title = f'{cate}'
     return render_template('categories.html',title = title, category = category)
+
+@main.route('/categories/<post>', methods=['GET','POST'])
+def comment(post):
+    pickup = Pickup.query.get_or_404(pickup_id)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = form.comment.data
+        new_comment = Comments(comment=comment, post=post, user_id=current_user.id)
+        db.session.add(new_pickup_comment)
+        db.session.commit()
+    comments = CommentsPickup.query.all()
+    return render_template('pickup.html', title=pickup.title, pickup=pickup, pickup_form=form, comments=comments)
