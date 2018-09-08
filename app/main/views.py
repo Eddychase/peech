@@ -75,6 +75,16 @@ def comment(pitches_id):
     title = f'{pitches_id}'
     return render_template('categories.html',title = title, comment = comment)
 
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(author = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)
+
+
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
@@ -90,7 +100,7 @@ def update_profile(uname):
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for('main.update_profile',uname=user.author))
+        return redirect(url_for('.profile',uname=user.author))
 
     return render_template('profile/update.html',form =form)
 
@@ -103,4 +113,4 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.update_profile',uname=uname))
+    return redirect(url_for('main.profile',uname=uname))
