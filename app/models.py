@@ -15,9 +15,10 @@ class User(UserMixin,db.Model):
     author = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     password_hash = db.Column(db.String(255))
-    # pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    pitch = db.relationship('Pitches', backref='author', lazy=True)
+    postcomments = db.relationship('CommentVote', backref='author', lazy=True)
 
-
+#to link tables what you add after backref matters
     @property
     def password(self):
         raise AttributeError('You cannnot read the password attribute')
@@ -40,7 +41,7 @@ class Pitches(db.Model):
     pitch = db.Column(db.String(255))
     date = db.Column(db.DateTime(250), default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comments = db.relationship('CommentVote', backref='title', lazy='dynamic')
+    comments = db.relationship('CommentVote', backref='category', lazy='dynamic')
 
     def save_pitch(self):
         db.session.add(self)
@@ -62,4 +63,4 @@ class CommentVote(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def __repr__(self):
-        return f"CommentsPost('{self.comment}', '{self.date_posted}')"
+        return f"CommentVote('{self.comment}', '{self.date_posted}')"

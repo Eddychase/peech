@@ -45,14 +45,15 @@ def category(cate):
     title = f'{cate}'
     return render_template('categories.html',title = title, category = category)
 
-@main.route('/categories/<post>', methods=['GET','POST'])
-def comment(post):
-    pickup = Pickup.query.get_or_404(pickup_id)
+@main.route('/categories/<int:pitches_id>', methods=['GET','POST'])
+def comment(pitches_id):
+    pitches = Pitches.query.get_or_404(pitches_id)
     form = CommentForm()
     if form.validate_on_submit():
         comment = form.comment.data
         new_comment = Comments(comment=comment, post=post, user_id=current_user.id)
-        db.session.add(new_pickup_comment)
+        db.session.add(new_pitches_comment)
         db.session.commit()
-    comments = CommentsPickup.query.all()
-    return render_template('pickup.html', title=pickup.title, pickup=pickup, pickup_form=form, comments=comments)
+    comments = CommentsPitches.query.all()
+    title = f'{<post>}
+    return render_template('comments.html', title=title, pitches=pitches, pitches_form=form, comments=comments)
