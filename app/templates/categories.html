@@ -1,5 +1,9 @@
 {% extends 'base.html'%}
 {% import "bootstrap/wtf.html" as wtf %}
+ {% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/categories.css')}}"> {% endblock %}
+<br>
+<br>
 <br>
 <br>
 
@@ -12,7 +16,9 @@
       {% for category in category %}
 
       <div class="card">
-        <!-- <img class="card" src="{{category.image}}" alt="Card image cap" size="100px180"> -->
+        <div class="card-header">
+          Featured
+        </div>
         <div class="card-body">
           <h5 class="card-title">{{category.author}}</h5>
           <p class="card-text">{{category.pitch}}</p>
@@ -25,9 +31,18 @@
           <small class="text-muted">Publish date:{{category.date}}</small>
         </div>
       </div>
-      {% endfor %}
+      <div class="container">
+    <div class="dialogbox">
+      <!-- <div class="body">
+        <span class="tip tip-up"></span>
+        <div class="message">
+          <span>I just made a comment about this comment box which is purely made from CSS.</span>
+        </div>
+      </div>
     </div>
+    </div> -->
+      {% endfor %}
+  
 
-  </div>
   {% endblock %}
 </body>
