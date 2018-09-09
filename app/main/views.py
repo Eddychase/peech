@@ -93,10 +93,10 @@ def comment():
     '''
     function to return the comments
     '''
-    comment =Comments.get_comment()
+    comment =Comments.get_comment(id)
     print(comment)
     title = 'comments'
-    return render_template('comments.html',title = title, comment = comment)
+    return render_template('comments.html',comment = comment)
 
 @main.route('/new_comment', methods = ['GET', 'POST'])
 def new_comment():

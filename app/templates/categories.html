@@ -27,10 +27,16 @@
         <div class="card-footer">
           <small class="text-muted">Publish date:{{category.date}}</small>
         </div>
-<button type="button" class="btn btn-outline-primary"><a href="/new_comment">Comment</a></button>
-      </div>
 
-      {% endfor %}
+<button type="button" class="btn btn-outline-primary"><a href="/new_comment">Comment</a></button>
+{% endfor %}
+{% for comment in comment %}
+<div class="card-body">
+    <p>{{comment.comment}}</p>
+  </div>
+{% endfor %}
+      </div>
+      
 
 
   {% endblock %}

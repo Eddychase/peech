@@ -8,7 +8,12 @@
 
       </div>
 
-      {{ wtf.quick_form(comment_form) }}
+      {% endfor %}
+      {% for comment in comment %}
+      <div class="card-body">
+          <p>{{comment.comment}}</p>
+        </div>
+      {% endfor %}
 
 
     </div>
