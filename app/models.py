@@ -18,7 +18,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     pitch = db.relationship('Pitches', backref='author', lazy=True)
-    postcomments = db.relationship('Comments', backref='author', lazy=True)
+    comments = db.relationship('Comments', backref='author', lazy=True)
 
 #to link tables what you add after backref matters
     @property
@@ -65,7 +65,8 @@ class Comments(db.Model):
     date_posted = db.Column(db.DateTime(250), default=datetime.utcnow)
     pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    pitches= db.relationship('Pitches', backref='comment',lazy='select')
+    pitches= db.relationship('Pitches', backref='pitch',lazy=True)
+    comments = db.relationship('Comments', backref='author', lazy=True)
 
 
     def save_comment(self):
