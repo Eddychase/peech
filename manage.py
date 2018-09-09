@@ -4,16 +4,12 @@ from  flask_migrate import Migrate, MigrateCommand
 from app.models import User, Pitches, Comments
 
 
-app = create_app('test')
+app = create_app('development')
 
 
-migrate = Migrate(app,db)
+
 manager = Manager(app)
-
-
-
 manager.add_command('server',Server)
-manager.add_command('db',MigrateCommand)
 
 
 @manager.command
@@ -25,7 +21,10 @@ def test():
 
 @manager.shell
 def make_shell_context():
-    return dict(app = app,db = db,User = User,Pitches = Pitches)
+    return dict(app = app,db = db,User = User,Pitches = Pitches, Comments= Comments)
+
+migrate = Migrate(app,db)
+manager.add_command('db',MigrateCommand)
 
 if __name__ == '__main__':
     manager.run()

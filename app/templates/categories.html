@@ -20,29 +20,19 @@
           {{category.author}}
         </div>
         <div class="card-body">
-          <h5 class="card-title"></h5>
+          <h5 class="card-title">{{category.title}}</h5>
           <p class="card-text">{{category.pitch}}</p>
-
-          <button type="button" class="btn btn-outline btn-lg"><a href="../{{category.id}}">Add Comment</a></button>
-
 
         </div>
         <div class="card-footer">
           <small class="text-muted">Publish date:{{category.date}}</small>
         </div>
+<button type="button" class="btn btn-outline-primary"><a href="/new_comment">Comment</a></button>
       </div>
-      <div class="container">
-    <div class="dialogbox">
-      <!-- <div class="body">
-        <span class="tip tip-up"></span>
-        <div class="message">
-          <span>I just made a comment about this comment box which is purely made from CSS.</span>
-        </div>
-      </div>
-    </div>
-    </div> -->
+
       {% endfor %}
 
 
   {% endblock %}
 </body>
+<!-- <button type="button" class="btn btn-outline btn-lg"><a href="/comments/{{category.id}}">Add Comment</a></button> -->

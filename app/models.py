@@ -39,6 +39,7 @@ class User(UserMixin,db.Model):
 class Pitches(db.Model):
     __tablename__= 'pitches'
     id = db.Column(db.Integer,primary_key = True)
+    title = db.Column(db.String(255))
     category = db.Column(db.String(255))
     pitch = db.Column(db.String(255))
     date = db.Column(db.DateTime(250), default=datetime.utcnow)
@@ -61,9 +62,9 @@ class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.String(255))
-    date_posted = db.Column(db.DateTime(250), nullable=False, default=datetime.utcnow)
-    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    date_posted = db.Column(db.DateTime(250), default=datetime.utcnow)
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     def save_comment(self):
         db.session.add(self)
