@@ -5,6 +5,9 @@
 
 {% for comm in comment %}
 <div class="card">
+  <div class="card-title">
+    <h5>{{comm.author}}</h5>
+  </div>
   <div class="card-body">
       <p>{{comm.comment}}</p>
   </div>
