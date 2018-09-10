@@ -110,5 +110,7 @@ def new_comment():
         new_comment = Comments(comment=comment)
         new_comment.save_comment()
 
-    title = 'New Comment'
+        title = 'New Comment'
+        return redirect(url_for('main.index'))
+        
     return render_template('new_comment.html', title = title, comment_form = form)
