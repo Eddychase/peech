@@ -14,7 +14,8 @@ def index():
     return
     '''
     message= "Hello"
-    return render_template('index.html', message=message)
+    title= 'Pitch It Ip!'
+    return render_template('index.html', message=message,title=title)
 
 @main.route('/pitch/', methods = ['GET','POST'])
 @login_required
@@ -108,9 +109,11 @@ def new_comment():
         comment = form.comment.data
 
         new_comment = Comments(comment=comment)
+
+
         new_comment.save_comment()
 
-        title = 'New Comment'
+
         return redirect(url_for('main.index'))
-        
-    return render_template('new_comment.html', title = title, comment_form = form)
+    title='New Pitch'
+    return render_template('new_comment.html',title=title,comment_form = form)
