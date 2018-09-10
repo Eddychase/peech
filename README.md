@@ -5,7 +5,6 @@
 ## Description
 an application that allows users to use that one minute wisely. The users will submit their one minute pitches and other users will vote on them and leave comments to give their feedback on them.
 
-You can view the site at:
 
 ## User Stories
 These are the behaviours/features that the application implements for use by a user.
@@ -37,7 +36,7 @@ As a user I would like to:
 * In your terminal:
 
         $ git clone https://github.com/emdeechege/peech/
-        $ cd NewsPI
+        $ cd peech
 
 ## Running the Application
 * Creating the virtual environment
