@@ -23,8 +23,8 @@
           <p class="card-text">{{category.pitch}}</p>
           <a href="/comments/{{category.id}}">view comment</a>
         </div>
-        <div class="card-footer bg-transparent border-success"><small class="text-muted">Publish date:{{category.date}}</small></div>
-        <button type="button" class="btn btn-outline-primary"><a href="/new_comment/{{category.id}}">Comment</a></button>
+        <div class="card-footer bg-transparent border-success"><small class="text-muted">Publish date:{{category.date.strftime('%Y-%m-%d')}}</small></div>
+        <button type="button" class="btn btn-outline-primary btn-sm"><a href="/new_comment/{{category.id}}">Comment</a></button>
       </div>
 
 

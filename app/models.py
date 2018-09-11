@@ -17,8 +17,8 @@ class User(UserMixin,db.Model):
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    pitch = db.relationship('Pitches', backref='author', lazy=True)
-    comments = db.relationship('Comments', backref='author', lazy=True)
+    pitch = db.relationship('Pitches', backref='author', lazy='dynamic')
+    comments = db.relationship('Comments', backref='author', lazy='dynamic')
 
 #to link tables what you add after backref matters
     @property
@@ -43,7 +43,7 @@ class Pitches(db.Model):
     pitch = db.Column(db.String(255))
     date = db.Column(db.DateTime(250), default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comments = db.relationship('Comments', backref='title', lazy=True)
+    comments = db.relationship('Comments', backref='title', lazy='dynamic')
 
     def save_pitch(self):
         db.session.add(self)
