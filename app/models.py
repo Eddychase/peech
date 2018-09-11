@@ -33,7 +33,7 @@ class User(UserMixin,db.Model):
         return check_password_hash(self.password_hash,password)
 
     def __repr__(self):
-        return f' {self.author}'
+        return f'Author: {self.author}'
 
 class Pitches(db.Model):
     __tablename__= 'pitches'
